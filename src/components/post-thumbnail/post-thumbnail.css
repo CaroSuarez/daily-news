@@ -1,0 +1,36 @@
+.post-thumbnail {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-thumbnail h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+figure {
+  height: 60%;
+  width: 100%;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}
+
+figcaption {
+  font-size: 12px;
+  background-color: lightgrey;
+  padding: 4px;
+  font-weight: 500;
+}
+
+p {
+  font-size: 15px;
+}
+
+.to-post-detail {
+  margin-top: auto;
+}
