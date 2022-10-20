@@ -5,3 +5,8 @@
   width: 100%;
   gap: 20px;
 }
+
+.home-posts__add {
+  margin: 50px 40%;
+  width: 20%;
+}

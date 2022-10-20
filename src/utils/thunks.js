@@ -25,7 +25,35 @@ export const fetchPosts = createAsyncThunk(
       }
       const data = await response.json();
       const prevState = getState().posts;
-      return [...prevState.articles, ...data];
+
+      return {
+        page: page,
+        end: data.length === 0,
+        articles: [...prevState.articles, ...data],
+      };
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+
+export const fetchPostById = createAsyncThunk(
+  "post/fetchPostById",
+  async ({ postId, controller }, { rejectWithValue, getState }) => {
+    try {
+      const response = await fetch(`${SERVER_URL}/posts/${postId}`, {
+        signal: controller?.signal,
+      });
+      if (response) {
+        controller = null;
+      }
+      if (!response.ok) {
+        const error = response.status;
+        throw error;
+      }
+      const data = await response.json();
+
+      return data;
     } catch (error) {
       rejectWithValue(error);
     }

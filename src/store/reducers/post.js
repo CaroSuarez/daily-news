@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPosts } from "../../utils/thunks";
+import { fetchPostById, fetchPosts } from "../../utils/thunks";
 
 export const postsSlice = createSlice({
   name: "posts",
   initialState: {
     loading: true,
     articles: [],
+    page: 0,
+    end: false,
+    postById: undefined,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -25,7 +28,27 @@ export const postsSlice = createSlice({
       .addCase(fetchPosts.fulfilled, (state, action) => {
         return {
           ...state,
-          articles: action.payload ? [...action.payload] : [],
+          ...action.payload,
+          loading: false,
+        };
+      })
+      .addCase(fetchPostById.pending, (state) => {
+        return {
+          ...state,
+          loading: true,
+        };
+      })
+      .addCase(fetchPostById.rejected, (state) => {
+        return {
+          ...state,
+          loading: false,
+        };
+      })
+      .addCase(fetchPostById.fulfilled, (state, action) => {
+        return {
+          ...state,
+          loading: false,
+          postById: action.payload,
         };
       });
   },
