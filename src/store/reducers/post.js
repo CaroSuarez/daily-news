@@ -4,7 +4,7 @@ import { fetchPostById, fetchPosts } from "../../utils/thunks";
 export const postsSlice = createSlice({
   name: "posts",
   initialState: {
-    loading: true,
+    loading: false,
     articles: [],
     page: 0,
     end: false,
@@ -33,9 +33,11 @@ export const postsSlice = createSlice({
         };
       })
       .addCase(fetchPostById.pending, (state) => {
+        console.log("EL ESTADO DE LA PETICIÓN ES PENDIENTE");
         return {
           ...state,
           loading: true,
+          postById: undefined,
         };
       })
       .addCase(fetchPostById.rejected, (state) => {

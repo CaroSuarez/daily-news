@@ -1,12 +1,16 @@
 .home-posts {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
+  width: 90vw;
   gap: 20px;
+  justify-content: center;
 }
 
 .home-posts__add {
   margin: 50px 40%;
   width: 20%;
+}
+
+.home-posts .post-thumbnail {
+  min-width: 30%;
 }

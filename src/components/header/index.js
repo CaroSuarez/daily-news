@@ -1,9 +1,11 @@
 import { Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
+import "./header.css";
+
 const Header = () => {
   return (
-    <div className="container">
+    <div className="header">
       <Navbar className="yellotail">
         <LinkContainer to="/">
           <Navbar.Brand>The daily news</Navbar.Brand>

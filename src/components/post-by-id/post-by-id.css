@@ -1,0 +1,5 @@
+.post-by-id {
+  display: grid;
+  gap: 20px;
+  text-align: justify;
+}

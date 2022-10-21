@@ -3,12 +3,14 @@ import { Container } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import "./main-layout.css";
+
 const MainLayout = (props) => {
   return (
-    <Container className="mt-5 mb-5">
+    <div className="main-layout">
       {props.children}
       <ToastContainer />
-    </Container>
+    </div>
   );
 };
 
