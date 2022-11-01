@@ -59,3 +59,41 @@ export const fetchPostById = createAsyncThunk(
     }
   }
 );
+
+export const addToNewsletter = createAsyncThunk(
+  "users/addToNewsletter",
+  async ({ email, controller }, { rejectWithValue, getState }) => {
+    try {
+      const findEmail = await fetch(`${SERVER_URL}/newsletter?email=${email}`, {
+        signal: controller?.signal,
+      });
+
+      if (!Array.isArray(findEmail) || !findEmail.data.length) {
+        const response = await fetch(`${SERVER_URL}/newsletter`, {
+          method: "POST",
+          signal: controller?.signal,
+          body: { email: email },
+        });
+
+        if (response) {
+          controller = null;
+        }
+        if (!response.ok) {
+          const error = response.status;
+          throw error;
+        }
+        const data = await response.json();
+
+        console.log(data);
+
+        return data;
+      } else {
+        return {
+          newsletter: "failed",
+        };
+      }
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
