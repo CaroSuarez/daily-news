@@ -4,7 +4,6 @@ import { addToNewsletter } from "../../utils/thunks";
 export const usersSlice = createSlice({
   name: "users",
   initialState: {
-    action: {},
     loading: false,
   },
   reducers: {},
@@ -17,6 +16,7 @@ export const usersSlice = createSlice({
         };
       })
       .addCase(addToNewsletter.rejected, (state) => {
+        console.log("failed");
         return {
           ...state,
           loading: false,
