@@ -1,7 +1,8 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { clearNewsLetter } from "../../../store/reducers/users";
 import { addToNewsletter } from "../../../utils/thunks";
 
 import "./newsletter.css";
@@ -27,6 +28,13 @@ const Newsletter = () => {
         inputRef.current.value = "";
       });
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearNewsLetter());
+    };
+  }, []);
+
   return (
     <div className="newsletter-container">
       <h1>Join our newsletter</h1>

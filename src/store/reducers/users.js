@@ -4,27 +4,33 @@ import { addToNewsletter } from "../../utils/thunks";
 export const usersSlice = createSlice({
   name: "users",
   initialState: {
-    loading: false,
+    action: {
+      loading: false,
+    },
   },
-  reducers: {},
+  reducers: {
+    clearNewsLetter: (state) => {
+      console.log("dentor del clearNewsletter");
+      state.action = {};
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addToNewsletter.pending, (state) => {
-        return {
-          ...state,
+        state.action = {
+          ...state.action,
           loading: true,
         };
       })
       .addCase(addToNewsletter.rejected, (state) => {
         console.log("failed");
-        return {
-          ...state,
+        state.action = {
+          ...state.action,
           loading: false,
         };
       })
       .addCase(addToNewsletter.fulfilled, (state, action) => {
-        return {
-          ...state,
+        state.action = {
           ...action.payload,
           loading: false,
         };
@@ -32,4 +38,5 @@ export const usersSlice = createSlice({
   },
 });
 
+export const { clearNewsLetter } = usersSlice.actions;
 export default usersSlice.reducer;
