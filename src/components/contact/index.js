@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import { Alert } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { sendMessage } from "../../utils/thunks";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const isRequiredMsg = "Sorry, this is required";
@@ -25,7 +27,15 @@ const Contact = () => {
         .max(500, "Sorry, the message is too long"),
     }),
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
+      dispatch(sendMessage(values))
+        .unwrap()
+        .then((response) => {
+          resetForm();
+          if (response) {
+            toast.success("Thank you! We'll contact you back.");
+          }
+        })
+        .catch((error) => toast.error("Ups, server error"));
     },
   });
 

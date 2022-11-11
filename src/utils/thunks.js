@@ -68,26 +68,6 @@ export const addToNewsletter = createAsyncThunk(
         signal: controller?.signal,
       });
 
-      // fetch(`${SERVER_URL}/newsletter/1`, {
-      //   method: "DELETE",
-      // })
-      //   .then((response) => {
-      //     return response.json();
-      //   })
-      //   .then((data) =>
-      //     // this is the data we get after doing the delete request, do whatever you want with this data
-      //     console.log(data)
-      //   );
-
-      fetch(`${SERVER_URL}/newsletter`)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) =>
-          // this is the data we get after doing the delete request, do whatever you want with this data
-          console.log(data)
-        );
-
       const findEmailData = await findEmail.json();
 
       if (!Array.isArray(findEmailData) || !findEmailData.length) {
@@ -108,7 +88,6 @@ export const addToNewsletter = createAsyncThunk(
           const error = response.status;
           throw error;
         }
-        console.log(response);
 
         return {
           newsletter: "added",
@@ -121,6 +100,30 @@ export const addToNewsletter = createAsyncThunk(
       }
     } catch (error) {
       rejectWithValue(error);
+    }
+  }
+);
+
+export const sendMessage = createAsyncThunk(
+  "users/sendMessage",
+  async (data) => {
+    try {
+      const response = await fetch(`${SERVER_URL}/Contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const error = response.status;
+        throw error;
+      }
+
+      return true;
+    } catch (error) {
+      throw error;
     }
   }
 );

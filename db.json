@@ -227,5 +227,27 @@
       "id": 6
     }
   ],
-  "contact": []
+  "contact": [
+    {
+      "email": "cslondo90@gmail.com",
+      "firstname": "Carolina",
+      "lastname": "Suarez",
+      "message": "wqw",
+      "id": 3
+    },
+    {
+      "email": "misomato04@gmail.com",
+      "firstname": "Greta",
+      "lastname": "Vhon",
+      "message": "This is beautiful!",
+      "id": 4
+    },
+    {
+      "email": "cslondo90@gmail.com",
+      "firstname": "Carolina",
+      "lastname": "Suarez",
+      "message": "qwqwqw",
+      "id": 5
+    }
+  ]
 }
